@@ -1,8 +1,6 @@
 <x-layout.main>
     <div class="flex p-16 bg-blue-fifth-color rounded-2xl m-10">
-        <div>
-            <img src="{{ asset('img/photo-moi.png') }}" alt="ordinateur" class="">
-        </div>
+
         <div>
             <small>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -23,6 +21,9 @@
                 BAC +3. Je suis actuellement à la recherche d'un stage de 10 semaines,
                 ainsi que d'une alternance d'une durée d'un an ou d'un an et demi.
             </p>
+        </div>
+        <div>
+            <img src="{{ asset('img/photo-moi.png') }}" alt="ordinateur" class="w-[60em]">
         </div>
 
     </div>
