@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LanguageRequest;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        //
+        $languages = Language::all();
+        return view('language.index', compact('languages'));
     }
 
     /**
@@ -20,15 +22,20 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        //
+        return view('language.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LanguageRequest $request)
     {
-        //
+        $data = $request->validated();
+        $language = new Language();
+        $language->fill($data);
+        $language->save();
+
+        return redirect()->route('language.index')->with('success', 'Le language est créer avec succes');
     }
 
     /**
@@ -36,7 +43,7 @@ class LanguageController extends Controller
      */
     public function show(Language $language)
     {
-        //
+        return view('language.show', compact('language'));
     }
 
     /**
@@ -44,15 +51,19 @@ class LanguageController extends Controller
      */
     public function edit(Language $language)
     {
-        //
+        return view('language.edit', compact('language'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Language $language)
+    public function update(LanguageRequest $request, Language $language)
     {
-        //
+        $data = $request->validated();
+        $language->fill($data);
+        $language->save();
+
+        return redirect()->route('language.index')->with('success', 'Langage mis à jour avec succès.');
     }
 
     /**
@@ -60,6 +71,8 @@ class LanguageController extends Controller
      */
     public function destroy(Language $language)
     {
-        //
+        $language->delete();
+
+        return redirect()->route('language.index')->with('success', 'Le language est bien supprimer');
     }
 }

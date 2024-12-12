@@ -14,13 +14,13 @@
     <nav class="flex justify-between items-center border-2 border-black w-screen">
         <img src="{{ asset('img/logo_dark.png') }}" alt="Logo" class="w-32">
         <ul class="flex space-x-16 bg-blue-primary-color text-white rounded-full px-8 py-4">
-            <li>Accueil</li>
+            <li><a href="{{route('home')}}">Accueil</a></li>
 
-            <li>Mes projets</li>
+            <li><a href="#">Mes projets</a></li>
 
-            <li>Mes Passions</li>
+            <li><a href="#">Mes Passions</a></li>
 
-            <li>Contact</li>
+            <li><a href="">Contact</a></li>
         </ul>
         <div class="flex space-x-6 items-center">
             <div class="border w-10 flex justify-center items-center p-2 h-10 border-black rounded-full size-6">
@@ -34,7 +34,21 @@
             </div>
         </div>
     </nav>
+    @if (session('status') || session('success'))
+                <div class="ml-2 bg-blue-bg-primary-color">
+                    <p class="text-sm font-medium text-white">
+                        {{ session('status') ?? session('success') }}
+                    </p>
+                </div>
+    @endif
     <main class="px-20">
+        <ul class="flex w-fit space-x-16 bg-blue-primary-color text-white rounded-full px-8 py-4 my-8">
+            <!--Faire en sorte que ca saffiche que une fois authentifier-->
+            <li><a href="{{route('project.index')}}">Mes projets</a></li>
+
+            <li><a href="{{route('language.index')}}">Les languages</a></li>
+            <li><a href="#">Origines des languages</a></li>
+        </ul>
         {{$slot}}
     </main>
 <footer class="bg-beige-fourth-color p-8 text-center">
