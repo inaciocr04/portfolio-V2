@@ -1,4 +1,4 @@
-<x-layout.main>
+<x-layout.main title="Mes projets">
     <div class="m-8">
         <x-link.link href="{{ route('project.create') }}" name="Créer un projet"/>
     </div>

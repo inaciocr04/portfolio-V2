@@ -1,4 +1,4 @@
-<x-layout.main>
+<x-layout.main title="Modifier le language {{$language->name}}">
     <h1>Modifier le language</h1>
 
     <form action="{{route('language.update', $language->id)}}" method="POST">

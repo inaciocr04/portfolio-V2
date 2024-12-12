@@ -1,4 +1,4 @@
-<x-layout.main>
+<x-layout.main title="Modifier le projet {{$project->name}}">
     <h1>Modifier le projet</h1>
     <form action="{{ route('project.update', $project->id) }}" method="POST" enctype="multipart/form-data">
         @csrf

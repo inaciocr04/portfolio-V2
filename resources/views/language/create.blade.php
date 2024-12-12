@@ -1,4 +1,4 @@
-<x-layout.main>
+<x-layout.main title="Ajouter un language">
     <h1>Ajouter un nouveau language</h1>
 
     <form action="{{route('language.store')}}" method="POST">

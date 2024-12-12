@@ -1,4 +1,4 @@
-<x-layout.main>
+<x-layout.main title="Ajouter un projet">
     <h1>Ajouter un nouveau projet</h1>
     <form action="{{ route('project.store') }}" method="POST" enctype="multipart/form-data">
         @csrf

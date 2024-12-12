@@ -1,4 +1,4 @@
-<x-layout.main>
+<x-layout.main title="Détail du projet {{$project->name}} ">
     <div>
         <div>
             <div>

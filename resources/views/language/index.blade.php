@@ -1,4 +1,4 @@
-<x-layout.main>
+<x-layout.main title="Les languages">
     <div class="mb-8">
         <x-link.link href="{{route('language.create')}}" name="Créer un language"/>
     </div>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 
-    <title>Portfolio</title>
+    <title>{{ $title ?? 'Portfolio' }}</title>
 </head>
 <body class="bg-beige-primary-color">
     <nav class="flex justify-between items-center border-2 border-black w-screen">
@@ -47,7 +47,7 @@
             <li><a href="{{route('project.index')}}">Mes projets</a></li>
 
             <li><a href="{{route('language.index')}}">Les languages</a></li>
-            <li><a href="#">Origines des languages</a></li>
+            <li><a href="{{route('originLanguage.index')}}">Origines des languages</a></li>
         </ul>
         {{$slot}}
     </main>
