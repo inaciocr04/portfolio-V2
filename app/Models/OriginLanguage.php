@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class OriginLanguage extends Model
 {
@@ -10,8 +11,8 @@ class OriginLanguage extends Model
         'name',
     ];
 
-    public function languages()
+    public function languages(): BelongsToMany
     {
-        return $this->belongsToMany(Language::class);
+        return $this->belongsToMany(Language::class, 'language_origin', 'origin_language_id', 'language_id');
     }
 }

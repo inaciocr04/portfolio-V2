@@ -6,7 +6,11 @@
         @foreach($projects as $project)
             <div>
                 <div>
-                    <img src="{{ asset('storage/' . $project->image_visuel) }}" alt="Visuel principal">
+                    @if($project->url_site)
+                        <iframe src="{{$project->url_site}}" width="600" height="400"></iframe>
+                    @else
+                        <img src="{{ asset('storage/' . $project->image_visuel) }}" alt="Visuel principal">
+                    @endif
                 </div>
                 <div>
                     <h3>{{$project->name}}</h3>

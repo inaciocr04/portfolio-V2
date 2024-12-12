@@ -17,6 +17,25 @@
         <small class="text-danger">{{ $message }}</small>
         @enderror
 
+        <div class="form-group">
+            <label for="originLanguages">Origines du language</label>
+            <div>
+                @foreach($originLanguages as $originLanguage)
+                    <div>
+                        <label>
+                            <input type="checkbox" name="origin_languages[]" value="{{ $originLanguage->id }}"
+                                   @if(in_array($originLanguage->id, $language->originLanguages->pluck('id')->toArray())) checked @endif>
+                            {{ $originLanguage->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+            @error('originLanguages')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+
         <x-form.button name="Modifier"/>
     </form>
 </x-layout.main>

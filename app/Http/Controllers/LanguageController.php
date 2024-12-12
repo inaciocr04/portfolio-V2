@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LanguageRequest;
 use App\Models\Language;
+use App\Models\OriginLanguage;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller
@@ -22,7 +23,8 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        return view('language.create');
+        $originLanguages = OriginLanguage::all();
+        return view('language.create', compact('originLanguages'));
     }
 
     /**
@@ -34,6 +36,8 @@ class LanguageController extends Controller
         $language = new Language();
         $language->fill($data);
         $language->save();
+
+        $language->originLanguages()->sync($data['origin_languages'] ?? null);
 
         return redirect()->route('language.index')->with('success', 'Le language est créer avec succes');
     }
@@ -51,7 +55,9 @@ class LanguageController extends Controller
      */
     public function edit(Language $language)
     {
-        return view('language.edit', compact('language'));
+        $originLanguages = OriginLanguage::all();
+        $languageOriginLanguages = $language->originLanguages->pluck('id')->toArray();
+        return view('language.edit', compact('language', 'originLanguages', 'languageOriginLanguages'));
     }
 
     /**
@@ -62,6 +68,9 @@ class LanguageController extends Controller
         $data = $request->validated();
         $language->fill($data);
         $language->save();
+
+        $language->originLanguages()->sync($data['origin_languages'] ?? null);
+
 
         return redirect()->route('language.index')->with('success', 'Langage mis à jour avec succès.');
     }

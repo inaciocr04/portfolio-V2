@@ -26,5 +26,7 @@
             <img src="{{ asset('img/photo-moi.png') }}" alt="ordinateur" class="w-[60em]">
         </div>
 
+
+
     </div>
 </x-layout.main>

@@ -24,6 +24,7 @@ class LanguageRequest extends FormRequest
         return [
             'name' => 'required',
             'description' => 'nullable',
-        ];
+            'origin_languages.*' => ['integer', 'exists:origin_languages,id'],
+            ];
     }
 }

@@ -6,6 +6,12 @@
         @foreach($languages as $language)
         <div class="flex space-x-4 items-center">
             <p>{{$language->name}}</p>
+            <div>
+                <p>appris en</p>
+                @foreach($language->originLanguages as $originLanguage)
+                    <p>{{$originLanguage->name}}</p>
+                @endforeach
+            </div>
             <x-link.link href="{{route('language.edit', ['language' => $language])}}" name="Modifier le language"/>
             <form action="{{route('language.destroy', ['language' => $language])}}" method="POST">
                 @csrf

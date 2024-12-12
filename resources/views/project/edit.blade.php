@@ -23,6 +23,29 @@
             @enderror
         </div>
 
+        <div class="form-group">
+            <label for="languages">Langues du projet</label>
+            <div>
+                @foreach ($languages as $language)
+                    <div class="form-check">
+                        <input
+                            type="checkbox"
+                            name="languages[]"
+                            value="{{ $language->id }}"
+                            id="language_{{ $language->id }}"
+                            class="form-check-input"
+                            @if(in_array($language->id, $projectLanguages ?? [])) checked @endif
+                        >
+                        <label for="language_{{ $language->id }}" class="form-check-label">{{ $language->name }}</label>
+                    </div>
+                @endforeach
+            </div>
+            @error('languages')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+
         <!-- Image principale -->
         <div class="form-group">
             <label for="image_visuel" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image principale</label>

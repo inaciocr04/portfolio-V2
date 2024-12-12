@@ -41,9 +41,7 @@ class ProjectController extends Controller
         if ($request->hasFile('image_visuel')) {
             $file = $request->file('image_visuel');
             $fileHash = md5_file($file->getRealPath());
-
             $existingPath = $this->findExistingFile('projects', $fileHash);
-
             if ($existingPath) {
                 $data['image_visuel'] = $existingPath;
             } else {
@@ -54,15 +52,12 @@ class ProjectController extends Controller
                 );
             }
         }
-
         for ($i = 1; $i <= 5; $i++) {
             $fieldName = "image_deco$i";
             if ($request->hasFile($fieldName)) {
                 $file = $request->file($fieldName);
                 $fileHash = md5_file($file->getRealPath());
-
                 $existingPath = $this->findExistingFile('projects', $fileHash);
-
                 if ($existingPath) {
                     $data[$fieldName] = $existingPath;
                 } else {
@@ -74,13 +69,10 @@ class ProjectController extends Controller
                 }
             }
         }
-
         $project->fill($data);
         $project->save();
 
-        if ($request->has('languages')) {
-            $project->languages()->attach($request->languages);
-        }
+        $project->languages()->attach($data['languages'] ?? null);
 
         return redirect()->route('project.index')->with('success', 'Project crée avec succés');
     }
@@ -99,7 +91,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('project.edit', compact('project'));
+        $languages = Language::all();
+        $projectLanguages = $project->languages->pluck('id')->toArray();
+        return view('project.edit', compact('project', 'languages', 'projectLanguages'));
     }
 
     /**
@@ -108,6 +102,7 @@ class ProjectController extends Controller
     public function update(ProjectRequest $request, Project $project)
     {
         $data = $request->validated();
+        $project->fill($data);
 
         if ($request->hasFile('image_visuel')) {
             $file = $request->file('image_visuel');
@@ -163,6 +158,9 @@ class ProjectController extends Controller
         }
 
         $project->update($data);
+
+        $project->languages()->sync($data['languages'] ?? null);
+
 
         return redirect()->route('project.index')->with('success', 'Projet mis à jour avec succès.');
     }
