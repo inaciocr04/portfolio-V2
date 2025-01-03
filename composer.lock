@@ -2006,6 +2006,7 @@
             "time": "2024-12-08T08:18:47+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "livewire/livewire",
             "version": "v3.5.18",
             "source": {
@@ -2082,6 +2083,8 @@
             "time": "2024-12-23T15:05:02+00:00"
         },
         {
+=======
+>>>>>>> 92c512ebb4599e251873ff81e81dd1a423c32ae4
             "name": "monolog/monolog",
             "version": "3.8.1",
             "source": {
@@ -8149,12 +8152,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
