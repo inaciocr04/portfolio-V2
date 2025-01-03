@@ -81,6 +81,21 @@
             </div>
         @endfor
 
+        <div class="flex items-center space-x-4 mt-4">
+            <div>
+                <input type="radio" id="en_cours" name="status" value="en cours"
+                       @checked($project->status === 'en cours')
+                       class="mr-2">
+                <label for="en_cours" class="text-lg">En cours</label>
+            </div>
+            <div>
+                <input type="radio" id="termine" name="status" value="terminé"
+                       @checked($project->status === 'terminé')
+                       class="mr-2">
+                <label for="termine" class="text-lg">Terminé</label>
+            </div>
+        </div>
+
         <!-- Bouton de mise à jour -->
         <button type="submit" class="btn btn-primary">Mettre à jour le projet</button>
     </form>

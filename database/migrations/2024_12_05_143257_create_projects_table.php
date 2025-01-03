@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('image_deco4')->nullable();
             $table->string('image_deco5')->nullable();
             $table->date('date_publication')->nullable();
+            $table->string('status')->nullable();
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
     }

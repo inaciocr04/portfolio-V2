@@ -35,7 +35,7 @@ class ProjectRequest extends FormRequest
             'image_deco4' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'image_deco5' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'languages.*' => ['integer', 'exists:languages,id'],
-
+            'status' => 'required|string|in:en cours,terminé',
         ];
     }
 }

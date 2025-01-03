@@ -15,7 +15,13 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::orderBy('created_at')->get();
+        if (auth()->check()) {
+            $projects = Project::orderBy('created_at')->get();
+        } else {
+            $projects = Project::where('active', 1)
+            ->orderBy('created_at')
+                ->get();
+        }
         $languages = Language::with('projects')->get();
 
         return view('project.index', compact('projects', 'languages'));

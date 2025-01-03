@@ -10,6 +10,20 @@
             @enderror
         </div>
         <div class="form-group">
+            <label for="url_site">Url du projet</label>
+            <input type="text" name="url_site" id="url_site" class="form-input">
+            @error('url_site')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="url_git">Url du git</label>
+            <input type="text" name="url_git" id="url_git" class="form-input">
+            @error('url_git')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+        <div class="form-group">
             <label for="description">Description</label>
             <textarea name="description" id="description" class="form-textarea" rows="5" required></textarea>
             @error('description')
@@ -45,6 +59,19 @@
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
+
+            <div class="flex items-center space-x-4 mt-4">
+                <div>
+                    <input type="radio" id="en_cours" name="status" value="en cours" checked class="mr-2">
+                    <label for="en_cours" class="text-lg">En cours</label>
+                </div>
+                <div>
+                    <input type="radio" id="termine" name="status" value="terminé" class="mr-2">
+                    <label for="termine" class="text-lg">Terminé</label>
+                </div>
+            </div>
+
+
             <!-- Bouton d'envoi -->
             <button type="submit" class="btn btn-primary">Ajouter le projet</button>
     </form>

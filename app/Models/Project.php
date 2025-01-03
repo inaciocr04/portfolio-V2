@@ -18,6 +18,8 @@ class Project extends Model
         'image_deco3',
         'image_deco4',
         'image_deco5',
+        'status',
+        'active'
     ];
 
     public function languages(): BelongsToMany

@@ -1,34 +1,38 @@
-<x-layout.main title="Mes projets">
-    <div class="m-8">
-        <x-link.link href="{{ route('project.create') }}" name="Créer un projet"/>
-    </div>
-    <div>
+ <x-layout.main title="Mes projets">
+     @auth
+        <div class="m-8">
+            <x-link.link href="{{ route('project.create') }}" name="Créer un projet"/>
+        </div>
+     @endauth
+    <div class="flex">
         @foreach($projects as $project)
             <div>
                 <div>
-                    @if($project->url_site)
-                        <iframe src="{{$project->url_site}}" width="600" height="400"></iframe>
-                    @else
-                        <img src="{{ asset('storage/' . $project->image_visuel) }}" alt="Visuel principal">
-                    @endif
+                    <img class="w-60" src="{{ asset('storage/' . $project->image_visuel) }}" alt="Visuel principal">
                 </div>
                 <div>
                     <h3>{{$project->name}}</h3>
                     <p>{{$project->date_publication}}</p>
-                    <ul>
+                    <div>
+                        <a href="{{$project->url_site}}"><i class="bi bi-link-45deg text-2xl"></i></a>
+                        <a href="{{ $project->url_git }}"><i class="bi bi-github text-2xl"></i></a>
+                    </div>
+                    <div class="flex">
                         @foreach($project->languages as $language)
-                            <li>{{$language->name}}</li>
+                            <p>{{$language->name}}, &nbsp;</p>
                         @endforeach
-                    </ul>
+                    </div>
                 </div>
                 <div class="m-4 flex space-x-4">
                     <x-link.link href="{{route('project.show', ['project' => $project])}}" name="Voir le détail"/>
+                    @auth
                     <x-link.link href="{{route('project.edit', ['project' => $project])}}" name="Modifier le projet"/>
                     <form action="{{route('project.destroy', ['project' => $project])}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <x-form.button name="Supprimer"/>
                     </form>
+                    @endauth
                 </div>
             </div>
         @endforeach
