@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('languages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('logo_language');
+            $table->foreignId('language_type_id')->constrained()->cascadeOnUpdate()->onDelete('cascade');
             $table->timestamps();
         });
     }

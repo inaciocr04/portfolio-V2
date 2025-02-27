@@ -25,7 +25,7 @@ export default {
             colors: {
                 'blue-primary-color': '#4F6D7A',
                 'blue-secondary-color': '#A3B9C7',
-                'blue-third-color': '#1D94CC',
+                'blue-third-color': '#597A88',
                 'blue-fourth-color': '#085F87',
                 'blue-fifth-color': '#2C465E',
                 'blue-sixth-color': '#E8F1F2',

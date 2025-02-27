@@ -1,10 +1,10 @@
- <x-layout.main title="Mes projets">
+ <x-layout.main title="Mes projets" class="container">
      @auth
-        <div class="m-8">
+        <div>
             <x-link.link href="{{ route('project.create') }}" name="Créer un projet"/>
         </div>
      @endauth
-    <div class="flex">
+    <div class="flex ">
         @foreach($projects as $project)
             <div>
                 <div>
@@ -13,6 +13,7 @@
                 <div>
                     <h3>{{$project->name}}</h3>
                     <p>{{$project->date_publication}}</p>
+                    <p class="uppercase">{{$project->status}}</p>
                     <div>
                         <a href="{{$project->url_site}}"><i class="bi bi-link-45deg text-2xl"></i></a>
                         <a href="{{ $project->url_git }}"><i class="bi bi-github text-2xl"></i></a>

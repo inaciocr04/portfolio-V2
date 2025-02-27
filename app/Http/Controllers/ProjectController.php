@@ -162,7 +162,7 @@ class ProjectController extends Controller
                 }
             }
         }
-
+        $project->active = $request->input('active');
         $project->update($data);
 
         $project->languages()->sync($data['languages'] ?? null);

@@ -23,8 +23,12 @@ class LanguageRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'description' => 'nullable',
+            'logo_language' => $this->isMethod('post')
+                ? 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                : 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'origin_languages.*' => ['integer', 'exists:origin_languages,id'],
-            ];
+            'language_type_id' => 'required|exists:language_types,id',
+        ];
     }
+
 }

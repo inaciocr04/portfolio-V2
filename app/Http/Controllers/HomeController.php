@@ -11,8 +11,9 @@ class HomeController extends Controller
     {
         $projectsFinishCount = $this->countProjectsFinish();
         $projectsInProgressCount = $this->countProjectsInProgress();
+        $projectRandom = $this->randomProject();
 
-        return view('home', compact('projectsFinishCount', 'projectsInProgressCount'));
+        return view('home', compact('projectsFinishCount', 'projectsInProgressCount', 'projectRandom'));
     }
 
     public function countProjectsFinish()
@@ -23,6 +24,10 @@ class HomeController extends Controller
     public function countProjectsInProgress()
     {
         return Project::where('status', 'en cours')->count();
+    }
+
+    public function randomProject(){
+        return Project::inRandomOrder()->limit(3)->get();
     }
 }
 

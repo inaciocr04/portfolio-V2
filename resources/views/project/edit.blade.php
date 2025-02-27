@@ -96,6 +96,29 @@
             </div>
         </div>
 
+        <div class="flex" x-data="{ toggle: {{ $project->active }} }">
+            <div class="relative rounded-full w-12 h-6 transition duration-200 ease-linear"
+                 :class="[toggle === 1 ? 'bg-green-400' : 'bg-gray-400']">
+
+                <label for="toggle"
+                       class="absolute left-0 bg-white border-2 mb-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer"
+                       :class="[toggle === 1 ? 'translate-x-full border-green-400' : 'translate-x-0 border-gray-400']"></label>
+
+                <input type="checkbox" id="toggle" name="toggle"
+                       class="appearance-none w-full h-full active:outline-none focus:outline-none"
+                       :checked="toggle === 1"
+                       @click="toggle = toggle === 0 ? 1 : 0; $dispatch('input', toggle)" />
+            </div>
+
+            <input type="hidden" name="active" :value="toggle" />
+
+            <span class="ml-2 text-lg" :class="[toggle === 1 ? 'text-green-500' : 'text-gray-500']">
+                    <span x-text="toggle === 1 ? 'Projet Actif' : 'Projet Inactif'"></span>
+                </span>
+        </div>
+
+
+
         <!-- Bouton de mise à jour -->
         <button type="submit" class="btn btn-primary">Mettre à jour le projet</button>
     </form>
