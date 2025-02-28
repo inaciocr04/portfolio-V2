@@ -51,15 +51,16 @@
     <div class="flex px-28 justify-between items-center">
         <livewire:projects-count/>
     </div>
-    <div class="container mx-auto px-4 py-8">
+    <div class="px-4 py-8 bg-blue-fifth-color flex flex-col items-center">
         <h2 class="text-3xl font-bold text-center mb-6">Mes Projets</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($projectRandom as $project)
                 <div
-                    class="bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 transform hover:scale-105">
+                    class="bg-blue-sixth-color shadow-lg rounded-lg overflow-hidden transition duration-300 transform hover:scale-105">
                     <img src="{{ asset('storage/' . $project->image_visuel) }}" alt="{{ $project->name }}"
-                         class="w-full h-48 object-cover">
+                         class="w-full h-48 object-cover object-top">
+
 
                     <div class="p-4">
                         <h3 class="text-xl font-bold text-gray-800">{{ $project->name }}</h3>
@@ -69,13 +70,12 @@
                         <div class="flex flex-wrap mt-3">
                             @foreach ($project->languages as $language)
                                 <span
-                                    class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                                    class="bg-blue-seventh-color text-black text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
                                 {{ $language->name }}
                             </span>
                             @endforeach
                         </div>
 
-                        <!-- Liens GitHub & URL -->
                         <div class="mt-4 flex justify-between items-center">
                             <div class="flex space-x-4">
                                 <a href="{{ $project->url_git }}" target="_blank"
@@ -101,7 +101,7 @@
                             </div>
 
                             <a href="{{ $project->url }}" target="_blank"
-                               class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 transition">
+                               class="bg-blue-secondary-color text-white px-3 py-1 rounded text-sm hover:bg-blue-fourth-color transition">
                                 Voir le projet
                             </a>
                         </div>

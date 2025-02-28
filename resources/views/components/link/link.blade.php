@@ -3,4 +3,4 @@
     'href' => '',
     'class' => '',
 ])
-<a class="bg-blue-secondary-color text-white rounded-lg px-4 py-2 w-fit {{$class}}" href="{{$href}}">{{$name}}</a>
+<a class="bg-blue-secondary-color text-white px-3 py-1 rounded text-sm hover:bg-blue-fourth-color transition" {{$class}}" href="{{$href}}">{{$name}}</a>

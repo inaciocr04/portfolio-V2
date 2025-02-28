@@ -10,22 +10,39 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        if (auth()->check()) {
-            $projects = Project::orderBy('created_at')->get();
-        } else {
-            $projects = Project::where('active', 1)
-            ->orderBy('created_at')
-                ->get();
-        }
-        $languages = Language::with('projects')->get();
+        // Créer la requête de base
+        $projects = Project::query();
 
+        // Si l'utilisateur est authentifié, on affiche tous les projets, sinon seulement les projets actifs
+        if (!auth()->check()) {
+            $projects->where('active', 1);
+        }
+
+        $query = Project::with(['language']);
+
+        if (!empty($filters['language_id'])) {
+            $query->whereIn('language_id', $filters['language_id']);
+        }
+
+        if ($request->has('search') && !empty($request->input('search'))) {
+            $projects->where('name', 'like', '%' . $request->input('search') . '%');
+        }
+        if ($request->has('status') && !empty($request->input('status'))) {
+            $projects->whereIn('status', $request->input('status'));
+        }
+
+        // Récupérer les projets filtrés
+        $projects = $projects->orderBy('created_at')->get();
+
+        // Charger toutes les langues pour les afficher dans le formulaire
+        $languages = Language::all();
+
+        // Passer les projets et les langues à la vue
         return view('project.index', compact('projects', 'languages'));
     }
+
 
     /**
      * Show the form for creating a new resource.

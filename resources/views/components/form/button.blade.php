@@ -3,4 +3,4 @@
     'type' => '',
     'class' => '',
 ])
-<button class="!bg-blue-secondary-color text-white rounded-lg px-4 py-2 {{$class}}" type="{{$type}}">{{$name}}</button>
+<button class="!bg-blue-secondary-color text-white px-3 py-1 rounded text-sm " {{$class}}" type="{{$type}}">{{$name}}</button>

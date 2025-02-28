@@ -22,7 +22,7 @@
             <div class="flex items-center w-fit text-center px-3 py-6 space-x-4">
                 <p class="text-8xl font-bold text-blue-secondary-color">{{ $yearsOftraining }}</p>
                 <div class="text-xl font-semibold text-white flex flex-col items-start">
-                    <p>Année de</p>
+                    <p>Années de</p>
                     <p>formation</p>
                 </div>
             </div>
@@ -31,7 +31,7 @@
             <div class="flex items-center w-fit text-center px-3 py-6 space-x-4">
                 <p class="text-8xl font-bold text-blue-secondary-color">{{ $yearsOfExperience }}</p>
                 <div class="text-xl font-semibold text-white flex flex-col items-start">
-                    <p>Année</p>
+                    <p>Années</p>
                     <p>d'expérience</p>
                 </div>
             </div>

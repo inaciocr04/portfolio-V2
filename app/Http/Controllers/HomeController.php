@@ -27,7 +27,7 @@ class HomeController extends Controller
     }
 
     public function randomProject(){
-        return Project::inRandomOrder()->limit(3)->get();
+        return Project::where('active', 1)->inRandomOrder()->limit(3)->get();
     }
 }
 

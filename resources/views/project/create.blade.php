@@ -30,16 +30,23 @@
             <small class="text-danger">{{ $message }}</small>
             @enderror
             <div clas="form-group">
-                <lael for="image_visuel" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image principale</lael>
-                <input type="file" name="image_visuel" id="image_visuel" class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" required>
+                <lael for="image_visuel" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image
+                    principale
+                </lael>
+                <input type="file" name="image_visuel" id="image_visuel"
+                       class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                       required>
                 @error('image_visuel')
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
             @for ($i = 1; $i <= 5; $i++)
                 <div class="form-group">
-                    <label for="image_deco{{ $i }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image décorative {{ $i }}</label>
-                    <input type="file" name="image_deco{{ $i }}" id="image_deco{{ $i }}" class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+                    <label for="image_deco{{ $i }}"
+                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image
+                        décorative {{ $i }}</label>
+                    <input type="file" name="image_deco{{ $i }}" id="image_deco{{ $i }}"
+                           class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                     @error("image_deco$i")
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -50,8 +57,10 @@
                 <div>
                     @foreach ($languages as $language)
                         <div class="form-check">
-                            <input type="checkbox" name="languages[]" value="{{ $language->id }}" id="language_{{ $language->id }}" class="form-check-input">
-                            <label for="language_{{ $language->id }}" class="form-check-label">{{ $language->name }}</label>
+                            <input type="checkbox" name="languages[]" value="{{ $language->id }}"
+                                   id="language_{{ $language->id }}" class="form-check-input">
+                            <label for="language_{{ $language->id }}"
+                                   class="form-check-label">{{ $language->name }}</label>
                         </div>
                     @endforeach
                 </div>
@@ -59,6 +68,16 @@
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
+            <div class="mb-4">
+                <label for="date_publication" class="block text-sm font-medium text-gray-700">Date de
+                    publication</label>
+                <input type="date" id="date_publication" name="date_publication"
+                       class="mt-1 p-2 w-full border rounded-md">
+                @error('date_publication')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
 
             <div class="flex items-center space-x-4 mt-4">
                 <div>
@@ -70,7 +89,6 @@
                     <label for="termine" class="text-lg">Terminé</label>
                 </div>
             </div>
-
 
 
             <!-- Bouton d'envoi -->

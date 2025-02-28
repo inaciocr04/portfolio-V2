@@ -5,4 +5,18 @@
 .container {
     width: 100%;
     padding: 0 20px 0 20px;
+    margin: 0 auto;
 }
+.grande_image{
+    height: 600px;
+    width: 600px;
+}
+.image_container{
+    position: absolute;
+}
+.image_seul{
+    width: 600px;
+    height: auto;
+    border-radius: 10px;
+}
+
