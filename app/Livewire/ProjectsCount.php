@@ -23,8 +23,8 @@ class ProjectsCount extends Component
 
     public function updateCounts()
     {
-        $this->projectsFinishCount = Project::where('status', 'terminé')->count();
-        $this->projectsInProgressCount = Project::where('status', 'en cours')->count();
+        $this->projectsFinishCount = Project::where('status', 'termine')->count();
+        $this->projectsInProgressCount = Project::where('status', 'en_cours')->count();
     }
 
     public function toggleForm()

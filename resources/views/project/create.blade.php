@@ -24,6 +24,13 @@
             @enderror
         </div>
         <div class="form-group">
+            <label for="video">Vidéo</label>
+            <input type="text" name="video" id="video" class="form-input">
+            @error('video')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+        <div class="form-group">
             <label for="description">Description</label>
             <textarea name="description" id="description" class="form-textarea" rows="5" required></textarea>
             @error('description')
@@ -81,11 +88,11 @@
 
             <div class="flex items-center space-x-4 mt-4">
                 <div>
-                    <input type="radio" id="en_cours" name="status" value="en cours" checked class="mr-2">
+                    <input type="radio" id="en_cours" name="status" value="en_cours" checked class="mr-2">
                     <label for="en_cours" class="text-lg">En cours</label>
                 </div>
                 <div>
-                    <input type="radio" id="termine" name="status" value="terminé" class="mr-2">
+                    <input type="radio" id="termine" name="status" value="termine" class="mr-2">
                     <label for="termine" class="text-lg">Terminé</label>
                 </div>
             </div>

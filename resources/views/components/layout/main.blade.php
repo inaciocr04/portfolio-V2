@@ -18,7 +18,7 @@
 
     <title>{{ $title ?? 'Portfolio' }}</title>
 </head>
-<body class="bg-blue-primary-color font-quicksand overflow-x-hidden">
+<body class="bg-blue-primary-color font-quicksand overflow-x-hidden h-screen">
 <nav class="flex justify-around items-center w-screen px-8 py-2 bg-blue-third-color ">
     <img src="{{ asset('img/logo_dark.png') }}" alt="Logo" class="w-14">
     <ul class="flex space-x-16 text-white px-8 py-4 justify-center">
@@ -64,7 +64,7 @@
 <main class="mb-3 {{ $class ?? '' }}">
     @if(auth()->user())
         <div class="w-full flex items-center justify-center py-6">
-            <ul class="flex items-center justify-center w-fit space-x-16 bg-blue-fourth-color text-white rounded-full px-8 py-2">
+            <ul class="flex items-center justify-center w-fit space-x-16 bg-blue-fifth-color text-white rounded-full px-8 py-2">
                 <li><a href="{{ route('project.index') }}">Mes projets</a></li>
                 <li><a href="{{ route('language.index') }}">Les langages</a></li>
                 <li><a href="{{ route('originLanguage.index') }}">Origines des langages</a></li>

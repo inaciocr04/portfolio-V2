@@ -17,9 +17,43 @@
         <!-- Description -->
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea name="description" id="description" class="form-textarea" rows="5" required>{{ old('description', $project->description) }}</textarea>
+            <textarea name="description" id="description" class="form-textarea" rows="5"
+                      required>{{ old('description', $project->description) }}</textarea>
             @error('description')
             <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="url_site">Url du projet</label>
+            <input type="text" name="url_site" id="url_site" class="form-input"
+                   value="{{ old('url_site', $project->url_site) }}">
+            @error('url_site')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="url_git">Url du git</label>
+            <input type="text" name="url_git" id="url_git" class="form-input"
+                   value="{{ old('url_git', $project->url_git) }}">
+            @error('url_git')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="video">Vidéo</label>
+            <input type="text" name="video" id="video" class="form-input"
+                   value="{{ old('video', $project->video) }}">
+            @error('video')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+        <div class="mb-4">
+            <label for="date_publication" class="block text-sm font-medium text-gray-700">Date de
+                publication</label>
+            <input type="date" id="date_publication" name="date_publication" value="{{ old('date_publication', $project->date_publication) }}"
+                   class="mt-1 p-2 w-full border rounded-md">
+            @error('date_publication')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
         </div>
 
@@ -48,8 +82,10 @@
 
         <!-- Image principale -->
         <div class="form-group">
-            <label for="image_visuel" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image principale</label>
-            <input type="file" name="image_visuel" id="image_visuel" class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+            <label for="image_visuel" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image
+                principale</label>
+            <input type="file" name="image_visuel" id="image_visuel"
+                   class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
             @error('image_visuel')
             <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -57,7 +93,8 @@
             <!-- Affichage de l'image actuelle -->
             @if ($project->image_visuel)
                 <p>Image actuelle :</p>
-                <img src="{{ asset('storage/' . $project->image_visuel) }}" alt="Image principale" style="max-width: 200px;">
+                <img src="{{ asset('storage/' . $project->image_visuel) }}" alt="Image principale"
+                     style="max-width: 200px;">
             @endif
         </div>
 
@@ -67,8 +104,10 @@
                 $imageField = 'image_deco' . $i;
             @endphp
             <div class="form-group">
-                <label for="image_deco{{ $i }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image décorative {{ $i }}</label>
-                <input type="file" name="image_deco{{ $i }}" id="image_deco{{ $i }}" class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+                <label for="image_deco{{ $i }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image
+                    décorative {{ $i }}</label>
+                <input type="file" name="image_deco{{ $i }}" id="image_deco{{ $i }}"
+                       class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                 @error("image_deco$i")
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
@@ -76,21 +115,22 @@
                 <!-- Affichage de l'image actuelle -->
                 @if ($project->$imageField)
                     <p>Image actuelle {{ $i }} :</p>
-                    <img src="{{ asset('storage/' . $project->$imageField) }}" alt="Décorative {{ $i }}" style="max-width: 100px; margin-right: 10px;">
+                    <img src="{{ asset('storage/' . $project->$imageField) }}" alt="Décorative {{ $i }}"
+                         style="max-width: 100px; margin-right: 10px;">
                 @endif
             </div>
         @endfor
 
         <div class="flex items-center space-x-4 mt-4">
             <div>
-                <input type="radio" id="en_cours" name="status" value="en cours"
-                       @checked($project->status === 'en cours')
+                <input type="radio" id="en_cours" name="status" value="en_cours"
+                       @checked($project->status === 'en_cours')
                        class="mr-2">
                 <label for="en_cours" class="text-lg">En cours</label>
             </div>
             <div>
-                <input type="radio" id="termine" name="status" value="terminé"
-                       @checked($project->status === 'terminé')
+                <input type="radio" id="termine" name="status" value="termine"
+                       @checked($project->status === 'termine')
                        class="mr-2">
                 <label for="termine" class="text-lg">Terminé</label>
             </div>
@@ -107,16 +147,15 @@
                 <input type="checkbox" id="toggle" name="toggle"
                        class="appearance-none w-full h-full active:outline-none focus:outline-none"
                        :checked="toggle === 1"
-                       @click="toggle = toggle === 0 ? 1 : 0; $dispatch('input', toggle)" />
+                       @click="toggle = toggle === 0 ? 1 : 0; $dispatch('input', toggle)"/>
             </div>
 
-            <input type="hidden" name="active" :value="toggle" />
+            <input type="hidden" name="active" :value="toggle"/>
 
             <span class="ml-2 text-lg" :class="[toggle === 1 ? 'text-green-500' : 'text-gray-500']">
                     <span x-text="toggle === 1 ? 'Projet Actif' : 'Projet Inactif'"></span>
                 </span>
         </div>
-
 
 
         <!-- Bouton de mise à jour -->

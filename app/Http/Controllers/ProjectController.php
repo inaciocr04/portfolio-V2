@@ -15,22 +15,32 @@ class ProjectController extends Controller
         // Créer la requête de base
         $projects = Project::query();
 
-        // Si l'utilisateur est authentifié, on affiche tous les projets, sinon seulement les projets actifs
         if (!auth()->check()) {
             $projects->where('active', 1);
         }
 
-        $query = Project::with(['language']);
+        if ($request->has('language_id') && !empty($request->input('language_id'))) {
+            $languageIds = $request->input('language_id');
 
-        if (!empty($filters['language_id'])) {
-            $query->whereIn('language_id', $filters['language_id']);
+            if (is_array($languageIds)) {
+                $projects->whereHas('languages', function ($query) use ($languageIds) {
+                    $query->whereIn('language_id', $languageIds);
+                });
+            }
         }
 
+        // Si le filtre status est présent
+        if ($request->has('status') && !empty($request->input('status'))) {
+            // On applique le filtre status avec whereIn
+            $statuses = $request->input('status');
+            if (is_array($statuses)) {
+                $projects->whereIn('status', $statuses);
+            }
+        }
+
+        // Si un terme de recherche est présent, on filtre également par nom de projet
         if ($request->has('search') && !empty($request->input('search'))) {
             $projects->where('name', 'like', '%' . $request->input('search') . '%');
-        }
-        if ($request->has('status') && !empty($request->input('status'))) {
-            $projects->whereIn('status', $request->input('status'));
         }
 
         // Récupérer les projets filtrés

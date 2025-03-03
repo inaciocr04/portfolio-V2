@@ -26,6 +26,7 @@ class ProjectRequest extends FormRequest
             'description' => 'required',
             'url_site' => 'nullable',
             'url_git' => 'nullable',
+            'video' => 'nullable|string',
             'image_visuel' => $this->isMethod('post')
                 ? 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
                 : 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -35,8 +36,9 @@ class ProjectRequest extends FormRequest
             'image_deco4' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'image_deco5' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'languages.*' => ['integer', 'exists:languages,id'],
-            'status' => 'required|string|in:en cours,terminé',
+            'status' => 'required|string|in:en_cours,termine',
             'active' => 'nullable|boolean',
+            'date_publication' => 'nullable|date',
         ];
     }
 }

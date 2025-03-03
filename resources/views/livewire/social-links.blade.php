@@ -3,9 +3,8 @@
     <div class="flex items-center space-x-16">
         <img src="{{ asset('img/photo-profile2.png') }}" alt="ordinateur" class="w-[400px] rot">
         <div class="flex flex-col space-y-4 items-center text-white">
-            <div class="h-36 rounded w-1 bg-blue-fifth-color"></div>
+            <div class="h-32 rounded w-1 bg-blue-fifth-color"></div>
 
-            <!-- Lien LinkedIn -->
             <div
                 class="text-blue-fifth-color w-10 flex justify-center items-center h-10 rounded-full size-6 hover:text-white hover:transition-all transition-all">
                 <a href="{{ $linkedinLink }}" target="_blank">
@@ -13,7 +12,6 @@
                 </a>
             </div>
 
-            <!-- Lien GitHub -->
             <div
                 class="text-blue-fifth-color w-10 flex justify-center items-center h-10 rounded-full size-6 hover:text-white hover:transition-all transition-all">
                 <a href="{{ $githubLink }}" target="_blank">
@@ -21,15 +19,20 @@
                 </a>
             </div>
 
-            <!-- Lien Instagram -->
             <div
                 class="text-blue-fifth-color w-10 flex justify-center items-center h-10 rounded-full size-6 hover:text-white hover:transition-all transition-all">
                 <a href="{{ $instagramLink }}" target="_blank">
                     <i class="bi bi-instagram text-2xl"></i>
                 </a>
             </div>
+            <div
+                class="text-blue-fifth-color w-10 flex justify-center items-center h-10 rounded-full size-6 hover:text-white hover:transition-all transition-all">
+                <a href="{{ $cvLink }}" target="_blank">
+                    <i class="bi bi-file-earmark-arrow-down text-2xl"></i>
+                </a>
+            </div>
 
-            <div class="h-36 rounded w-1 bg-blue-fifth-color"></div>
+            <div class="h-32 rounded w-1 bg-blue-fifth-color"></div>
             @auth
                 <button wire:click="toggleForm" class="mt-4 bg-blue-fifth-color  text-white p-2 rounded">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -59,6 +62,11 @@
                     <label for="instagram" class="text-white">Instagram</label>
                     <input type="url" id="instagram" wire:model="instagramLink"
                            class="border p-2 rounded text-black w-full" placeholder="https://instagram.com/toncompte">
+                </div>
+                <div class="mb-4">
+                    <label for="cv" class="text-white">CV</label>
+                    <input type="url" id="cv" wire:model="cvLink"
+                           class="border p-2 rounded text-black w-full" placeholder="lien du cv">
                 </div>
 
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">

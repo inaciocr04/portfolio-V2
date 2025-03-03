@@ -100,10 +100,8 @@
                                 </a>
                             </div>
 
-                            <a href="{{ $project->url }}" target="_blank"
-                               class="bg-blue-secondary-color text-white px-3 py-1 rounded text-sm hover:bg-blue-fourth-color transition">
-                                Voir le projet
-                            </a>
+                            <x-link.link href="{{route('project.show', ['project' => $project])}}"
+                                         name="Voir le projet"/>
                         </div>
                     </div>
                 </div>

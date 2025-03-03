@@ -12,6 +12,8 @@ class Project extends Model
         'description',
         'url_site',
         'url_git',
+        'video',
+        'date_publication',
         'image_visuel',
         'image_deco1',
         'image_deco2',

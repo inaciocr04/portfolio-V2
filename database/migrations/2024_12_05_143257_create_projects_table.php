@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('url_site')->nullable();
             $table->string('url_git')->nullable();
+            $table->string('video')->nullable();
             $table->string('image_visuel');
             $table->string('image_deco1')->nullable();
             $table->string('image_deco2')->nullable();

@@ -39,25 +39,25 @@
                 <label class="font-bold">Formation :</label>
                 <select name="language_id[]" class="form-select block w-full mt-1" multiple id="language_id">
                     @foreach($languages as $language)
-                        <option value="{{ $language->id }}"
-                            {{ in_array($language->id, request()->input('language_id', [])) ? 'selected' : '' }}>
+                        <option value="{{ $language->id }}" {{ in_array($language->id, request()->input('language_id', [])) ? 'selected' : '' }}>
                             {{ $language->name }}
                         </option>
                     @endforeach
                 </select>
+
             </div>
             <div class="w-full md:w-2/4">
                 <label class="font-bold">Statut :</label>
                 <select name="status[]" class="form-select block w-full mt-1" multiple id="status">
-                    <option
-                        value="en_cours" {{ in_array('en_cours', request()->input('status', [])) ? 'selected' : '' }}>En
-                        cours
+                    <option value="en_cours" {{ in_array('en_cours', request()->input('status', [])) ? 'selected' : '' }}>
+                        En cours
                     </option>
-                    <option value="termine" {{ in_array('terminé', request()->input('status', [])) ? 'selected' : '' }}>
+                    <option value="termine" {{ in_array('termine', request()->input('status', [])) ? 'selected' : '' }}>
                         Terminé
                     </option>
                 </select>
             </div>
+
             <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded mt-4 md:mt-0">Appliquer les filtres
             </button>
         </form>
@@ -127,6 +127,11 @@
     <script>
         $(document).ready(function () {
             $('#language_id').select2({
+                placeholder: 'Sélectionnez une formation',
+                allowClear: true,
+                width: '100%',
+            });
+            $('#status').select2({
                 placeholder: 'Sélectionnez une formation',
                 allowClear: true,
                 width: '100%',

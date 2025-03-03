@@ -10,6 +10,7 @@ class SocialLinks extends Component
     public $githubLink;
     public $linkedinLink;
     public $instagramLink;
+    public $cvLink;
     public $showForm = false;
 
     public function mount()
@@ -17,6 +18,7 @@ class SocialLinks extends Component
         $this->githubLink = DB::table('settings')->where('key', 'github_link')->value('value');
         $this->linkedinLink = DB::table('settings')->where('key', 'linkedin_link')->value('value');
         $this->instagramLink = DB::table('settings')->where('key', 'instagram_link')->value('value');
+        $this->cvLink = DB::table('settings')->where('key', 'cv_link')->value('value');
     }
 
     public function save()
@@ -24,6 +26,7 @@ class SocialLinks extends Component
         DB::table('settings')->where('key', 'github_link')->update(['value' => $this->githubLink]);
         DB::table('settings')->where('key', 'linkedin_link')->update(['value' => $this->linkedinLink]);
         DB::table('settings')->where('key', 'instagram_link')->update(['value' => $this->instagramLink]);
+        DB::table('settings')->where('key', 'cv_link')->update(['value' => $this->cvLink]);
 
         session()->flash('message', 'Liens de réseaux sociaux mis à jour avec succès.');
     }
