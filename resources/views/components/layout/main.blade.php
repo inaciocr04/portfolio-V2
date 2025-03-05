@@ -9,27 +9,45 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap"
         rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     @livewireStyles
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <title>{{ $title ?? 'Portfolio' }}</title>
 </head>
-<body class="bg-blue-primary-color font-quicksand overflow-x-hidden h-screen">
-<nav class="flex justify-around items-center w-screen px-8 py-2 bg-blue-third-color ">
+<body class="bg-blue-primary-color font-quicksand overflow-x-hidden min-h-screen">
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-around items-center px-8 py-2 bg-blue-third-color shadow-md">
     <img src="{{ asset('img/logo_dark.png') }}" alt="Logo" class="w-14">
     <ul class="flex space-x-16 text-white px-8 py-4 justify-center">
-        <li><a href="{{route('home')}}">Accueil</a></li>
-
+        <li><a href="{{ route('home') }}">Accueil</a></li>
         <li><a href="{{ route('project.index') }}">Mes projets</a></li>
-
         <li><a href="#">Mes Passions</a></li>
 
         @auth
             <li>{{ Auth::user()->name }}</li>
+            <li x-data="{ open: false }" class="relative">
+                <span @click="open = !open" class="cursor-pointer">Partie admin</span>
+                <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0"
+                     x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                     class="absolute left-0 mt-2 bg-blue-fifth-color text-white rounded-lg shadow-lg w-56">
+                    <ul class="space-y-2 py-2 px-4">
+                        <li><a href="{{ route('project.index') }}">Mes projets</a></li>
+                        <li><a href="{{ route('language.index') }}" class="block">Les langages</a></li>
+                        <li><a href="{{ route('originLanguage.index') }}" class="block">Origines des langages</a></li>
+                        <li><a href="{{ route('languageType.index') }}" class="block">Types de langages</a></li>
+                        <li><a href="{{ route('timeline.index') }}" class="block">Timeline</a></li>
+                    </ul>
+                </div>
+            </li>
+
             <li>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
@@ -61,19 +79,7 @@
         </p>
     </div>
 @endif
-<main class="mb-3 {{ $class ?? '' }}">
-    @if(auth()->user())
-        <div class="w-full flex items-center justify-center py-6">
-            <ul class="flex items-center justify-center w-fit space-x-16 bg-blue-fifth-color text-white rounded-full px-8 py-2">
-                <li><a href="{{ route('project.index') }}">Mes projets</a></li>
-                <li><a href="{{ route('language.index') }}">Les langages</a></li>
-                <li><a href="{{ route('originLanguage.index') }}">Origines des langages</a></li>
-                <li><a href="{{ route('languageType.index') }}">Types de langages</a></li>
-            </ul>
-
-        </div>
-    @endif
-
+<main class="{{ $class ?? '' }}">
     {{$slot}}
 </main>
 <footer class=" p-8 text-center bg-blue-secondary-color">

@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProjetStatuRequest extends FormRequest
+class TimelineRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateProjetStatuRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required',
+            'description' => 'required',
+            'date' => 'required',
         ];
     }
 }

@@ -1,7 +1,7 @@
 <div>
     <!-- Affichage des liens actuels -->
     <div class="flex items-center space-x-16">
-        <img src="{{ asset('img/photo-profile2.png') }}" alt="ordinateur" class="w-[400px] rot">
+        <img src="{{ asset('img/photo-profile2.png') }}" alt="ordinateur" class="w-[400px] ">
         <div class="flex flex-col space-y-4 items-center text-white">
             <div class="h-32 rounded w-1 bg-blue-fifth-color"></div>
 

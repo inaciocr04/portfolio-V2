@@ -14,7 +14,7 @@
                     <span>Rodrigues</span>
                 </h1>
                 <div class="pl-20 text-xl">
-                    <p>Développeur web et mobile full-stack</p>
+                    <p>Développeur web / mobile full-stack en recherche d'alternance</p>
                 </div>
             </div>
             <div x-data="{ isHovered: false }" class="pl-20">
@@ -29,7 +29,7 @@
 
                     <a
                         class="relative z-10 text-2xl font-bold text-black transition-colors duration-500 group-hover:text-white"
-                        href=""
+                        href="#a_propos"
                     >
                         Me découvrir
                     </a>
@@ -48,10 +48,10 @@
         </div>
         <livewire:social-links/>
     </header>
-    <div class="flex px-28 justify-between items-center">
+    <section class="flex px-28 justify-between items-center">
         <livewire:projects-count/>
-    </div>
-    <div class="px-4 py-8 bg-blue-fifth-color flex flex-col items-center">
+    </section>
+    <section class="px-4 py-8 bg-blue-fifth-color flex flex-col items-center">
         <h2 class="text-3xl font-bold text-center mb-6">Mes Projets</h2>
 
         <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -107,6 +107,154 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </section>
+    <section class="py-8 flex flex-col items-center">
+        <h2 class="text-3xl font-bold text-center mb-6">Mon parcours scolaire</h2>
+
+        <div x-data="{ isHovered: false }"
+             @mouseenter="isHovered = true"
+             @mouseleave="isHovered = false"
+             class="relative w-full px-8 overflow-hidden">
+
+            <div id="timeline" class="flex gap-4 overflow-x-auto scroll-smooth cursor-grab hide-scrollbar">
+                @foreach($timelines as $timeline)
+                    <div class="w-1/4 flex-shrink-0 flex flex-col space-x-4 timeline-item">
+                        <div class="flex items-center">
+                            <div class="w-1/4 rounded-l-full h-2 bg-blue-fifth-color"></div>
+                            <div class="w-8 h-8 rounded-full bg-blue-fifth-color flex justify-center items-center p-4">
+                                <i class="bi bi-briefcase text-lg text-white"></i>
+                            </div>
+                            <div class="w-full rounded-r-full h-2 bg-blue-fifth-color"></div>
+                        </div>
+                        <div class="mt-4 bg-blue-sixth-color text-center rounded-2xl px-4 py-6 sm:pe-8">
+                            <h4 class="font-bold text-xl">{{$timeline->title}}</h4>
+                            <p>({{$timeline->date}})</p>
+                            <p class="text-left">{{$timeline->description}}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <section id="compétences" class="bg-blue-secondary-color flex justify-center items-center flex-col py-8"
+         x-data="{ active: 1 }">
+        <div class="container">
+            <div>
+                <h2 class="text-3xl font-bold text-center mb-6">Mes Compétences</h2>
+                <div class="bg-blue-seventh-color rounded-lg p-4 w-fit mx-auto">
+                    <ul class="list-none p-0 text-center flex space-x-6 justify-center items-center">
+                        @foreach($languageTypes as $languageType)
+                            <li @click="active = {{ $loop->index + 1 }}"
+                                :class="{ 'bg-blue-fifth-color text-white p-2 rounded-lg': active === {{ $loop->index + 1 }} }"
+                                class="cursor-pointer text-sm">{{ $languageType->name }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+            @foreach($languageTypes as $languageType)
+                <div x-show="active === {{ $loop->index + 1 }}"
+                     class="mt-6 grid grid-cols-5 place-items-center gap-12 w-fit mx-auto"
+                     :class="{ 'opacity-100': active === {{ $loop->index + 1 }} }">
+
+                    @foreach($languages->where('language_type_id', $languageType->id) as $language)
+                        <div
+                            class="w-32 flex flex-col justify-center items-center space-y-[-20px]">
+                            <img class="w-24" src="{{ asset('storage/' . $language->logo_language) }}"
+                                 alt="{{ $language->name }}">
+                            <div class="flex flex-col justify-center items-center">
+                                <div
+                                    class="w-0 h-0 border-l-[30px] border-r-[30px] border-t-[30px] border-t-transparent border-l-transparent border-r-transparent border-b-[20px] border-b-blue-sixth-color">
+                                </div>
+                                <div
+                                    class="bg-blue-sixth-color text-center py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                    <p class="font-extrabold text-lg">{{ $language->name }}</p>
+                                    @if($language->originLanguages->isNotEmpty())
+                                        <p class="text-xs text-gray-500">
+                                            Appris en
+                                            @foreach($language->originLanguages as $origin)
+                                                {{ $origin->name }}{{ !$loop->last ? ', ' : '' }}
+                                            @endforeach
+                                        </p>
+                                    @endif
+                                </div>
+
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
+        </div>
+    </section>
+    <section id="a_propos" class="bg-blue-sixth-color py-12">
+        <div class="container mx-auto px-6 lg:px-20 flex flex-col lg:flex-row items-center">
+            <div class="lg:w-1/2 flex justify-center mb-6 lg:mb-0">
+                <div class="relative w-64 h-64 rounded-full overflow-hidden shadow-lg border-4 border-blue-seventh-color">
+                    <img src="{{ asset('img/photo-face.png') }}" alt="Photo de moi" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-20 hover:bg-opacity-40 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 text-center lg:text-left">
+                <h2 class="text-4xl font-bold text-blue-fifth-color mb-4">À propos de moi</h2>
+                <p class="text-blue-third-color leading-relaxed mb-6">
+                    Ayant toujours été plongé dans l'informatique grâce à mon père,
+                    j’ai découvert le développement web au lycée, puis au cours de ma formation en
+                    <span class="font-semibold text-blue-fifth-color">BUT MMI</span>.
+                    C’est là que s’est révélée ma passion pour ce domaine fascinant.
+                    <br><br>
+                    J’ai toujours voulu comprendre comment était conçu un site internet, et aujourd’hui,
+                    <span class="font-semibold text-blue-fifth-color">j’adore en créer</span>.
+                    Les projets que j’ai réalisés durant ma formation témoignent de mon évolution,
+                    et je suis fier du chemin parcouru.
+                    <br><br>
+                    Dans la continuité de mon parcours, je vais intégrer
+                    <span class="font-semibold text-blue-fifth-color">Ynov Strasbourg</span>
+                    pour un Mastère et je suis actuellement à la recherche d’une **entreprise**
+                    prête à me faire confiance en alternance.
+                    Motivé et déterminé, je suis prêt à démontrer mes compétences et à apprendre encore plus
+                    aux côtés d’une équipe passionnée !
+                </p>
+                <a href="#" class="bg-blue-seventh-color text-white px-6 py-3 rounded-lg shadow-md
+            hover:bg-blue-fourth-color transition-all duration-300">
+                    Télécharger mon CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const timeline = document.getElementById("timeline");
+            const items = document.querySelectorAll(".timeline-item");
+            let itemWidth = items[0].offsetWidth + 16;
+            let currentIndex = 0;
+
+            function scrollToIndex(index) {
+                gsap.to(timeline, {scrollLeft: index * itemWidth, duration: 0.5, ease: "power2.out"});
+            }
+
+            timeline.addEventListener("wheel", (e) => {
+                e.preventDefault();
+                if (e.deltaY > 0) {
+                    currentIndex = Math.min(currentIndex + 1, items.length - 1);
+                } else {
+                    currentIndex = Math.max(currentIndex - 1, 0);
+                }
+                scrollToIndex(currentIndex);
+            });
+
+            function autoScroll() {
+                currentIndex = (currentIndex + 1) % items.length;
+                scrollToIndex(currentIndex);
+            }
+
+            let autoScrollInterval = setInterval(autoScroll, 3000);
+
+            timeline.addEventListener("mouseenter", () => clearInterval(autoScrollInterval));
+            timeline.addEventListener("mouseleave", () => autoScrollInterval = setInterval(autoScroll, 3000));
+        });
+    </script>
 
 </x-layout.main>

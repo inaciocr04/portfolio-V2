@@ -6,6 +6,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LanguageTypeController;
 use App\Http\Controllers\OriginLanguageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TimelineController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -20,3 +21,4 @@ Route::resource('project', ProjectController::class);
 Route::resource('language', LanguageController::class);
 Route::resource('originLanguage', OriginLanguageController::class);
 Route::resource('languageType', LanguageTypeController::class);
+Route::resource('timeline', TimelineController::class);

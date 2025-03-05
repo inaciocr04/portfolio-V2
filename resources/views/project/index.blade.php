@@ -1,14 +1,7 @@
 <x-layout.main title="Mes projets">
-    @auth
-        <div>
-            <x-link.link href="{{ route('project.create') }}" name="Créer un projet"/>
-        </div>
-    @endauth
-
     <div class="px-4 py-8 flex flex-col items-center justify-center">
         <h2 class="text-3xl font-bold text-center mb-6">Mes Projets</h2>
 
-        <!-- Formulaire de recherche avec une jolie barre -->
         <form method="GET" action="{{ route('project.index') }}" class="mb-10 mt-4 w-full md:w-1/4 flex items-center">
             <div class="relative w-full">
                 <input
@@ -27,12 +20,16 @@
             </div>
 
             <button type="submit"
-                    class="px-6 py-2 bg-blue-500 text-white rounded-tr-full rounded-br-full hover:bg-blue-600 transition duration-300">
+                    class="px-6 py-2 bg-blue-fifth-color text-white rounded-tr-full rounded-br-full hover:bg-blue-600 transition duration-300">
                 Rechercher
             </button>
         </form>
 
-        <!-- Formulaire de filtres -->
+        @auth
+            <div>
+                <x-link.link href="{{ route('project.create') }}" name="Créer un projet"/>
+            </div>
+        @endauth
         <form method="GET" action="{{ route('project.index') }}"
               class="mb-10 mt-4 flex flex-col md:flex-row gap-4 items-start md:items-center">
             <div class="w-full md:w-2/4">
@@ -58,7 +55,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded mt-4 md:mt-0">Appliquer les filtres
+            <button type="submit" class="px-4 py-2 bg-blue-fifth-color text-white rounded mt-4 md:mt-0">Appliquer les filtres
             </button>
         </form>
 

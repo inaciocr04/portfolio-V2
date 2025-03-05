@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TimelineRequest;
 use App\Models\Timeline;
-use App\Http\Requests\StoreTimelineRequest;
-use App\Http\Requests\UpdateTimelineRequest;
 
 class TimelineController extends Controller
 {
@@ -13,7 +12,9 @@ class TimelineController extends Controller
      */
     public function index()
     {
-        //
+        $timelines = Timeline::orderBy('title')->get();
+
+        return view('timeline.index', compact('timelines'));
     }
 
     /**
@@ -21,15 +22,19 @@ class TimelineController extends Controller
      */
     public function create()
     {
-        //
+        return view('timeline.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTimelineRequest $request)
+    public function store(TimelineRequest $request)
     {
-        //
+        $data = $request->validated();
+        $timeline = new Timeline();
+        $timeline->fill($data);
+        $timeline->save();
+        return redirect()->route('timeline.index')->with('success', 'L\'élément est crée avec succés.');
     }
 
     /**
@@ -45,15 +50,19 @@ class TimelineController extends Controller
      */
     public function edit(Timeline $timeline)
     {
-        //
+        return view('timeline.edit', compact('timeline'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTimelineRequest $request, Timeline $timeline)
+    public function update(TimelineRequest $request, Timeline $timeline)
     {
-        //
+        $data = $request->validated();
+        $timeline->fill($data);
+        $timeline->save();
+
+        return redirect()->route('timeline.index')->with('success', 'L\'élément est modifier avec succés.');
     }
 
     /**
@@ -61,6 +70,7 @@ class TimelineController extends Controller
      */
     public function destroy(Timeline $timeline)
     {
-        //
+        $timeline->delete();
+        return redirect()->route('timeline.index')->with('success', 'L\'élément est supprimer avec succés.');
     }
 }
